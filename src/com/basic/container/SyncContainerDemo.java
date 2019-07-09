@@ -5,11 +5,12 @@ import java.util.Vector;
 public class SyncContainerDemo {
 	
 	private Vector<String> strVector = new Vector<>();
-	private final Iterator<String> vectorInter = strVector.iterator();
+	private Iterator<String> vectorInter = null;
 	private void initVector() {
 		for(int i=0;i<1000;i++) {
 			this.strVector.add("element " + i);
 		}
+		vectorInter=strVector.iterator();
 	}
 	
 	private void out() {
@@ -17,10 +18,11 @@ public class SyncContainerDemo {
 		/**
 		 * 在复合操作时如(hasNext()后使用next()),会发生异常
 		 */
-		while(this.vectorInter.hasNext()) {
-			String temp = this.vectorInter.next();
-			System.out.println(Thread.currentThread().getName() + "-->" + temp);
-		}
+			while(this.vectorInter.hasNext()) {
+				String temp = this.vectorInter.next();
+				System.out.println(Thread.currentThread().getName() + "-->" + temp);
+			}
+		
 	}
 
 	public static void main(String[] args) {
