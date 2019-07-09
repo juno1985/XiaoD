@@ -18,11 +18,12 @@ public class SyncContainerDemo {
 		/**
 		 * 在复合操作时如(hasNext()后使用next()),会发生异常
 		 */
+		synchronized(this.vectorInter) {
 			while(this.vectorInter.hasNext()) {
 				String temp = this.vectorInter.next();
 				System.out.println(Thread.currentThread().getName() + "-->" + temp);
 			}
-		
+		}
 	}
 
 	public static void main(String[] args) {
